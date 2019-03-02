@@ -31,7 +31,12 @@ the upstream master branch, and then will cut a new branch from their origin
 master, the new feature branch will be named based on what issue/feature they
 are working with. Detailed instructions will be laid out below.
 
-Git Instructions:
+\*\*Note: If you haven't already, please install the following VSCode extensions:
+
+1. Prettier - Code Formatter
+2. EditorConfig for VS Code
+
+/////////////////////////////////////////////// Git Instructions:
 
 Initial Setup -
 
@@ -68,15 +73,15 @@ Navigate to https://github.com/TransientCW/KnockoutJS-Trivia
    git remote add upstream git@github.com:TransientCW/KnockoutJS-Trivia.git
 
    Now if you type git remote -v, you will see that you essentially have an
-   origin (fetch and push), which points to your fork, and an upstream (fetch and push), which points to the main
-   repo on my github account.
+   origin (fetch and push), which points to your fork, and an upstream (fetch and push),
+   which points to the main repo on my github account.
 
-Creating New Feature Branches For Your Code Milestones -
+///////////////////// Creating New Feature Branches For Your Tickets -
 
 Now that you have an origin pointing to your fork, and an upstream pointing to
 the main repo on my account, you are all set to start coding. We will be assigning
 tickets to each dev to allow for making small, incremental changes like you will
-be doing at work in an Agile environment.
+most likely be doing at work in an Agile environment.
 
 1. Make sure you pull all changes from the upstream master branch. In a command
    prompt/terminal, navigate to your forks directory on your local computer. Once inside
@@ -86,7 +91,7 @@ be doing at work in an Agile environment.
 
    If there are changes that have been merged into upstream master, you will
    see a bunch of code be pulled in. To now add these changes to your origin
-   master remote branch (the forks origin master living remotely on
+   master remote branch (the fork's origin master living remotely on
    the github pages), type 'git push origin master'. Now all changes are pushed remotely
    to your fork living on github.com. You are now able to cut a new feature branch
    to start your work.
@@ -96,23 +101,10 @@ be doing at work in an Agile environment.
    git checkout -b issue-blahblahblah
 
    From our waffleboard, you will have ticket numbers assigned to you, so you'll
-   replace blahblahblah with the actual ticket number.
+   replace blahblahblah with the actual ticket number (Top left of your ticket
+   is a number).
 
-3. As a good habit, and in case there were any new npm packages added into the
-   upstream master branch, delete your node_modules directory (if exists), and
-   delete the package-lock.json file. IMPORTANT: NEVER DELETE package.json,
-   just package-lock.json. Once these are deleted, from a command prompt/terminal
-   and while inside your fork directory on your local computer, type:
-
-   npm install
-
-   This will go through your package.json file and install all dependencies into
-   a new node_modules directory in your project. Chances are we won't really
-   be adding new npm modules, but it does no harm to do the above steps and ensures
-   you have all the latest modules we have in the upstream master's node_modules
-   directory.
-
-4. CODE!!! Once you have added your code and finished the feature/ticket you
+3. CODE!!! Once you have added your code and finished the feature/ticket you
    are assigned, and you are confident that you are happy with the way the
    application is running, you are now ready to commit all your code changes,
    and submit a pull request to have those changes approved and merged into the
@@ -127,5 +119,41 @@ be doing at work in an Agile environment.
 
    Now navigate to the URL associated with your fork in a web browser. You will
    notice that towards the top of your page there is now a pull request box,
-   with a green button that says 'submit pull request'. Click the green button.
-   This takes you to the new pull request page.
+   with a green button that says 'compare and pull request'. Click the green button.
+   This takes you to the new pull request page. Under the 'Open a pull request'
+   header, you will see a gray box. Select the following values
+
+   (On the left hand side of the gray arrow inbetween the dropdown boxes) -
+
+   base repository: TransientCW/KnockoutJS-Trivia
+   base: master
+
+   (On the right hand side of the gray arrow inbetween the dropdown boxes) -
+
+   head repository: YourGitUserName/KnockoutJS-Trivia
+   compare: issue-blahblah
+
+   Note -
+   What the above is doing, is saying that you want to take your code changes
+   from the feature branch (issue-blahblah) that is a part of your fork, and
+   request to have someone review the changes, and then merge those changes into
+   the master branch of the main (upstream) repository.
+
+   Lastly, underneath the boxes that you just worked with, you will want to leave
+   a title - It's up to you, just put something descriptive.
+
+   Underneath the title is the 'Leave a comment'..... Here, please use the following
+   format:
+
+   Fixes #xxxx
+
+   Where xxxx is the actual ticket number from your assigned ticket on the waffleboard
+   (very top left of the ticket is a number)
+
+   This will link the pull request on the github pages, to the actual ticket on the
+   waffleboard and will make it easier for the dev's reviewing your code to find
+   the pull request on github - it adds a little green github icon on your ticket
+   providing a direct link to your PR.
+
+For any issues or behaviors that are troubling you, I will always have our slack
+channel open whether at home or at work.
