@@ -55,7 +55,8 @@ Navigate to https://github.com/TransientCW/KnockoutJS-Trivia
    the difference is outside the scope of this project)).
 
 5. Open a command prompt or terminal on your local computer at home. Navigate
-   to the folder where you want to clone your fork. Type 'git clone <paste copied URL>'
+   to the folder where you want to clone your fork. Type 'git clone (paste the
+   URL that you copied in the last step)'
    and hit enter.
 
 6. You now have a cloned copy of your fork residing on your local computer, with
