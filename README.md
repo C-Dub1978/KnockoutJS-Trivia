@@ -1,2 +1,131 @@
-# KnockoutJS-Trivia
-A basic SPA trivia game using MVVM style with knockout.js
+#KnockoutJS-Trivia
+
+#Contributors
+David Tarvin
+Ethan Townsend
+Jason Sullenger
+Christopher Wilson
+
+Team Name:
+
+Team Alpha Queue
+
+The App:
+
+This is a group assignment for a javascript course @ Bellevue University. This
+is a single page app, using MVVM patterns, for a 10 question trivia game with
+questions focused on last semester's javascript I course and its material. The
+user will have the ability to move back to previous questions, and move to the
+next question. Once finished, the user will submit the questions to be graded
+to then be either reprimanded/scolded, or awarded a gold star for paying attention
+in school.
+
+Git flow:
+
+To help students get familiar with working on funcionality at the same time as
+each other, and to mitigate the joys of 'rebase hell', we will use a slightly
+non-normal git flow. Each dev will have a fork of this repo serving as their
+'origin', and will also add the main repo as their 'upstream'. When working on
+milestones, each devloper will make sure that they pull the latest changes from
+the upstream master branch, and then will cut a new branch from their origin
+master, the new feature branch will be named based on what issue/feature they
+are working with. Detailed instructions will be laid out below.
+
+Git Instructions:
+
+Initial Setup -
+
+Navigate to https://github.com/TransientCW/KnockoutJS-Trivia
+
+1. On the top-right portion of the page, select the 'fork' button.
+
+2. When it asks, 'Where should we fork.......', select your proper github account.
+   If you do not see your account, make sure you are logged in.
+
+3. Once it is done forking, you will now see it as one of your own repos on your
+   github page.
+
+4. Click the green 'Clone or Download' button from your fork's page, and copy
+   the URL. (Use whichever protocol (http or ssl) that you normally do (explaining
+   the difference is outside the scope of this project)).
+
+5. Open a command prompt or terminal on your local computer at home. Navigate
+   to the folder where you want to clone your fork. Type 'git clone <paste copied URL>'
+   and hit enter.
+
+6. You now have a cloned copy of your fork residing on your local computer, with
+   'origin master' pointing to the origin master of your remote fork. Navigate into
+   the new directory that has been cloned onto your computer.
+
+7. Next we want to add our 'upstream'. The upstream will be pointing to the main
+   repo at the URL above. This serves as our main, final master branch. Throughout
+   the duration of the project, when changes get merged into this upstream master
+   branch by other teammates, you will be constantly pulling in these changes
+   into your fork so that when you are working on new features, you have all the
+   latest changes.
+   Type the following into your command prompt/terminal:
+
+   git remote add upstream git@github.com:TransientCW/KnockoutJS-Trivia.git
+
+   Now if you type git remote -v, you will see that you essentially have an
+   origin (fetch and push), which points to your fork, and an upstream (fetch and push), which points to the main
+   repo on my github account.
+
+Creating New Feature Branches For Your Code Milestones -
+
+Now that you have an origin pointing to your fork, and an upstream pointing to
+the main repo on my account, you are all set to start coding. We will be assigning
+tickets to each dev to allow for making small, incremental changes like you will
+be doing at work in an Agile environment.
+
+1. Make sure you pull all changes from the upstream master branch. In a command
+   prompt/terminal, navigate to your forks directory on your local computer. Once inside
+   your fork directory, type:
+
+   git pull --ff-only upstream master
+
+   If there are changes that have been merged into upstream master, you will
+   see a bunch of code be pulled in. To now add these changes to your origin
+   master remote branch (the forks origin master living remotely on
+   the github pages), type 'git push origin master'. Now all changes are pushed remotely
+   to your fork living on github.com. You are now able to cut a new feature branch
+   to start your work.
+
+2. Create a new feature branch by typing:
+
+   git checkout -b issue-blahblahblah
+
+   From our waffleboard, you will have ticket numbers assigned to you, so you'll
+   replace blahblahblah with the actual ticket number.
+
+3. As a good habit, and in case there were any new npm packages added into the
+   upstream master branch, delete your node_modules directory (if exists), and
+   delete the package-lock.json file. IMPORTANT: NEVER DELETE package.json,
+   just package-lock.json. Once these are deleted, from a command prompt/terminal
+   and while inside your fork directory on your local computer, type:
+
+   npm install
+
+   This will go through your package.json file and install all dependencies into
+   a new node_modules directory in your project. Chances are we won't really
+   be adding new npm modules, but it does no harm to do the above steps and ensures
+   you have all the latest modules we have in the upstream master's node_modules
+   directory.
+
+4. CODE!!! Once you have added your code and finished the feature/ticket you
+   are assigned, and you are confident that you are happy with the way the
+   application is running, you are now ready to commit all your code changes,
+   and submit a pull request to have those changes approved and merged into the
+   upstream master branch. type:
+
+   git add -A (hit enter)
+   git commit -m "type a message explaining details of what you did, doesn't
+   have to be super detailed" (hit enter)
+   git push origin issue-blahblah
+
+   Your code changes will be pushed up to your fork on the github pages.
+
+   Now navigate to the URL associated with your fork in a web browser. You will
+   notice that towards the top of your page there is now a pull request box,
+   with a green button that says 'submit pull request'. Click the green button.
+   This takes you to the new pull request page.

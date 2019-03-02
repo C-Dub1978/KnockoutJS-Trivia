@@ -1,0 +1,27 @@
+{
+  "name": "knockoutjs-trivia",
+  "version": "1.0.0",
+  "description": "Trivia game using MVVM pattern with knockouJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TransientCW/KnockoutJS-Trivia.git"
+  },
+  "keywords": [
+    "Trivia",
+    "MVVM",
+    "knockoutJS"
+  ],
+  "author": "David Tarvin, Ethan Townsend, Jason Sullenger, Chris Wilson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TransientCW/KnockoutJS-Trivia/issues"
+  },
+  "homepage": "https://github.com/TransientCW/KnockoutJS-Trivia#readme",
+  "dependencies": {
+    "knockout": "^3.5.0"
+  }
+}
