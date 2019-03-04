@@ -1,31 +1,69 @@
+/**
+ * This is the main viewmodel for the entire application
+ */
 function AppViewModel() {
   var self = this;
 
+  // Header data binding
   self.header = "Trivia App";
 
+  // Declare the questionsAndAnswers array below as an observableArray
   self.questionsAndAnswers = ko.observableArray(questionsAndAnswers);
 
-  ko.components.register("question", {
-    viewModel: function(params) {
-      console.log("params inside question component: ", params);
-      var self = this;
-      self.question = params.triviaQuestion;
-    },
-    template: 'Question: <pre data-bind="text: question" />'
-  });
+  self.answerPercentage = 10;
 
-  ko.components.register("answer", {
+  self.correctAnswerPercentage = function(booleanValue) {
+    self.answerPercentage /= booleanValue;
+    console.log("current answers correct percentage: ", self.answerPercentage);
+  };
+
+  ko.components.register("question-answer-box", {
     viewModel: function(params) {
-      console.log("params inside answer component: ", params);
       var self = this;
-      self.answer = params.triviaAnswer;
+      self.triviaQuestion = ko.observable(params.triviaQuestion);
+      // self.triviaAnswers = ko.observableArray(params.triviaAnswersArray);
+      self.triviaAnswers = params.triviaAnswersArray;
+
+      self.correctAnswer = params.correctAnswer;
+
+      self.id = params.id;
+
+      self.currentAnswer = null;
+
+      self.setCurrentAnswer = function(data) {
+        self.currentAnswer = data;
+        if (
+          self.currentAnswer.toLowerCase() === self.correctAnswer.toLowerCase()
+        ) {
+          console.log("correct!!");
+          // $root.correctAnswerPercentage(1);
+        } else {
+          console.log("incorrect!");
+          // $root.correctAnswerPercentage(0);
+        }
+      };
     },
-    template: `<input type="radio" name="answer" value="answer">${
-      self.answer
-    }<br />`
+    template: `
+      <ul class="questions-answers-ul">
+        <li class="question-li">
+        Question: <pre data-bind="text: triviaQuestion" /><br />
+        Answers:<br />
+          <ul data-bind="foreach: triviaAnswers">
+            <li class="answer-li">
+              <input
+                type="radio"
+                data-bind="attr: { name: $parent.id },
+                click: $parent.setCurrentAnswer($data)"/>
+              <pre class="answer-label" data-bind="text: $data" />
+            </li>
+          </ul>
+        </li>
+      </ul>
+    `
   });
 }
 
+// The array of all 20 questions and answers
 const questionsAndAnswers = [
   {
     question: `What are the different primitive types in javascript?`,
@@ -35,7 +73,8 @@ const questionsAndAnswers = [
       `string, number, boolean, null, function, undefined, object`,
       `string, number, boolean, null, undefined`
     ],
-    correctAnswer: `string, number, boolean, null, undefined`
+    correctAnswer: `string, number, boolean, null, undefined`,
+    id: 1
   },
   {
     question: `What is the proper way to nest an object inside an object literal?`,
@@ -80,7 +119,8 @@ const questionsAndAnswers = [
           street: ‘Elm St.’,
           zip: 80000
         }
-      }`
+      }`,
+    id: 2
   },
   {
     question: `Take the following array:
@@ -104,7 +144,8 @@ const questionsAndAnswers = [
 	              return 'Name: ' + musician.name + ', Band: ' + musician.band;
               });`,
     answers: [`forEach`, `map`, `mapEach`, `entries`],
-    correctAnswer: `map`
+    correctAnswer: `map`,
+    id: 3
   },
   {
     question: `What is the proper way to bring an external javascript file into
@@ -116,7 +157,8 @@ const questionsAndAnswers = [
       `const externalLibrary = import(‘jquery.min.js’);`,
       `const externalLibrary = require(‘jquery.min.js’);`
     ],
-    correctAnswer: `const externalLibrary = require(‘jquery.min.js’);`
+    correctAnswer: `const externalLibrary = require(‘jquery.min.js’);`,
+    id: 4
   },
   {
     question: `What is the correct way to alter the text inside the following
@@ -128,6 +170,7 @@ const questionsAndAnswers = [
       `document.getElementById(‘container’).innerHTML = ‘This is the new text’;`
     ],
     correctAnswer: `document.getElementById(‘container’).innerHTML = ‘This is
-                    the new text’;`
+                    the new text’;`,
+    id: 5
   }
 ];

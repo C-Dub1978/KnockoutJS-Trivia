@@ -15,18 +15,15 @@
     />
   </head>
   <body>
+    <!-- Here we are using the viewModel's header property-->
     <h3 data-bind="text: header"></h3>
-    <div data-bind="foreach: questionsAndAnswers">
-      <ul>
-        <li>
-          <question params="triviaQuestion: question"></question><br />
-          <ul>
-            <li data-bind="foreach: answers">
-              <answer params="triviaAnswer: $data"></answer>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <div
+      class="questions-answers-container"
+      data-bind="foreach: questionsAndAnswers"
+    >
+      <question-answer-box
+        params="triviaQuestion: question, triviaAnswersArray: answers, correctAnswer: correctAnswer, id: id"
+      ></question-answer-box>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
@@ -37,6 +34,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
     <script src="view-models/main-view-model.js"></script>
     <script>
+      // Load the viewModel after DOM is rendered
       $(document).ready(function() {
         ko.applyBindings(new AppViewModel());
       });
