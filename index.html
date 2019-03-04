@@ -6,9 +6,40 @@
     <title>KnockoutJS Trivia - Team Alpha Queue</title>
     <meta name="description" content="Trivia Game" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <script src="knockout/knockout-3.5.0.js"></script>
+    <h3 data-bind="text: header"></h3>
+    <div data-bind="foreach: questionsAndAnswers">
+      <ul>
+        <li>
+          <question params="triviaQuestion: question"></question><br />
+          <ul>
+            <li data-bind="foreach: answers">
+              <answer params="triviaAnswer: $data"></answer>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="view-models/main-view-model.js"></script>
+    <script>
+      $(document).ready(function() {
+        ko.applyBindings(new AppViewModel());
+      });
+    </script>
   </body>
 </html>
