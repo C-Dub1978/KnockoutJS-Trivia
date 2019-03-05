@@ -15,16 +15,48 @@
     />
   </head>
   <body>
-    <!-- Here we are using the viewModel's header property-->
-    <h3 data-bind="text: header"></h3>
-    <div
+    <!-- <div
       class="questions-answers-container"
       data-bind="foreach: questionsAndAnswers"
     >
       <question-answer-box
         params="triviaQuestion: question, triviaAnswersArray: answers, correctAnswer: correctAnswer, id: id"
       ></question-answer-box>
+    </div> -->
+      <div class="row centered">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8"><h3 data-bind="text: header"></h3></div>
+        <div class="col-sm-2"></div>
+      </div>
+      <div class="row centered">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8"></div>
+        <div class="col-sm-2"></div>
+      </div>
     </div>
+    <div class="row centered">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8" data-bind="visible: !submitted()">
+        <div data-bind="visible: !userNameSet()">
+          <label for="userName">Enter Username:</label><br />
+          <input type="text" data-bind="value: userName" id="userName" />
+          <button data-bind="click: setUserName">Submit</button>
+        </div>
+        <div data-bind="visible: userNameSet()">
+          Let's play!
+        </div>
+        <div data-bind="visible: submitted()">You are playing the game!</div>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+    <div class="row centered">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <button class="btn btn-secondary" data-bind="click: toggleSubmitted">
+          Toggle Submit
+        </button>
+      </div>
+      <div class="col-sm-2"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
@@ -32,11 +64,12 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
-    <script src="view-models/main-view-model.js"></script>
+    <!-- <script src="view-models/main-view-model.js"></script> -->
+    <script src="view-models/view-model.js"></script>
     <script>
       // Load the viewModel after DOM is rendered
       $(document).ready(function() {
-        ko.applyBindings(new AppViewModel());
+        ko.applyBindings(new OverviewModel());
       });
     </script>
   </body>

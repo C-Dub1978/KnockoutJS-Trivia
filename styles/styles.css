@@ -1,7 +1,9 @@
-.question-li {
-  border: 1px solid red;
+.centered {
+  text-align: center;
 }
 
-.answer-li {
-  border: 1px solid green;
+input,
+.btn {
+  padding: 5px;
+  margin: 20px;
 }

@@ -1,75 +1,63 @@
-/**
- * This is the main viewmodel for the entire application
- */
-function AppViewModel() {
+function CurrentQuestionModel(question, answers, correctAnswer, id) {
+  var self = this;
+  self.question = question;
+  self.answers = answers;
+  self.correctAnswer = correctAnswer;
+  self.id = id;
+}
+
+function OverviewModel() {
   var self = this;
 
-  // Header data binding
-  self.header = "Trivia App";
+  self.userName = ko.observable("");
 
-  // Declare the questionsAndAnswers array below as an observableArray
-  self.questionsAndAnswers = ko.observableArray(questionsAndAnswers);
+  self.userNameSet = ko.observable(false);
 
-  self.correctAnswers = -4;
+  self.header = "Trivia Game";
 
-  self.finishedAnswers = [];
+  self.answeredQuestions = ko.observableArray([]);
 
-  self.correctAnswerPercentage = function(booleanValue, id) {
-    booleanValue = parseInt(booleanValue);
-    if (!self.finishedAnswers.includes(id)) {
-      if (booleanValue === 1) {
-        self.finishedAnswers.push(id);
-        self.correctAnswers += booleanValue;
-      }
-    } else if (self.finishedAnswers.includes(id)) {
-      if (booleanValue === 0) {
-        self.correctAnswers -= 1;
-      }
-      console.log("number of correct answers: ", self.correctAnswers);
+  self.currentQuestion = null;
+
+  self.submitted = ko.observable(false);
+
+  self.loadQuestionIntoView = function(id) {
+    const index = self.answeredQuestions().findIndex(obj => {
+      return obj.id === parseInt(id);
+    });
+    if (index !== -1) {
+      self.currentQuestion = self.answeredQuestions()[index];
     }
-
-    self.correctAnswers += booleanValue;
-    console.log("number of correct answers: ", self.correctAnswers);
   };
 
-  ko.components.register("question-answer-box", {
-    viewModel: function(params) {
-      var self = this;
-      self.triviaQuestion = ko.observable(params.triviaQuestion);
-      // self.triviaAnswers = ko.observableArray(params.triviaAnswersArray);
-      self.triviaAnswers = params.triviaAnswersArray;
-
-      self.correctAnswer = params.correctAnswer;
-
-      self.id = params.id;
-
-      self.setCurrentAnswer = function(data, root, index) {
-        self.currentAnswer = data;
-        if (
-          self.currentAnswer.toLowerCase() === self.correctAnswer.toLowerCase()
-        ) {
-          root.correctAnswerPercentage(1, index);
-        } else {
-          root.correctAnswerPercentage(0, index);
-        }
-      };
+  self.setUserName = ko.computed({
+    read: function() {
+      return self.userNameSet();
     },
+    write: function() {
+      self.userNameSet(true);
+    },
+    owner: self
+  });
+
+  self.toggleSubmitted = ko.computed({
+    read: function() {
+      return self.submitted();
+    },
+    write: function() {
+      if (self.submitted() === true) {
+        self.submitted(false);
+      } else {
+        self.submitted(true);
+      }
+    },
+    owner: self
+  });
+
+  ko.components.register("questions-answers", {
+    viewModel: CurrentQuestionModel,
     template: `
-      <ul class="questions-answers-ul">
-        <li class="question-li">
-        Question: <pre data-bind="text: triviaQuestion" /><br />
-        Answers:<br />
-          <ul data-bind="foreach: triviaAnswers">
-            <li class="answer-li">
-              <input
-                type="radio"
-                data-bind="attr: { name: $parent.id },
-                click: $parent.setCurrentAnswer($data, $root, $index)"/>
-              <pre class="answer-label" data-bind="text: $data" />
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <p></p>
     `
   });
 }
