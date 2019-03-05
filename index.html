@@ -42,8 +42,7 @@
           <input type="text" data-bind="value: userName" id="userName" />
           <button data-bind="click: setUserName">Submit</button>
         </div>
-        <div data-bind="visible: userNameSet()">
-          Let's play!
+        <div data-bind="visible: userNameSet()" id="questions-container">
         </div>
         <div data-bind="visible: submitted()">You are playing the game!</div>
       </div>
