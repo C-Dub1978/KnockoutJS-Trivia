@@ -4,12 +4,13 @@ function QuestionModel(question, answers, correctAnswer, id) {
   self.answers = answers;
   self.correctAnswer = correctAnswer;
   self.id = id;
+  self.isCorrect = false;
 }
 
 function OverviewModel() {
   var self = this;
 
-  self.currentId = 1;
+  self.currentId = ko.observable(0);
 
   self.userName = ko.observable("");
 
@@ -19,48 +20,44 @@ function OverviewModel() {
 
   self.answeredQuestions = ko.observableArray([]);
 
-  self.questionsObjects = [];
+  self.questionsObjects = ko.observableArray([]);
 
-  self.currentQuestion = null;
+  self.currentQuestion = self.questionsObjects()[self.currentId()];
 
   self.submitted = ko.observable(false);
 
+  self.allQuestionsAnswered = false;
+
+  self.onNext = function() {
+    var current = parseInt(self.currentId());
+    console.log("current id: ", current);
+    if (current < 9) {
+      self.currentId(++current);
+    }
+  };
+
+  self.onPrevious = function() {
+    var current = parseInt(self.currentId());
+    console.log("current id: ", current);
+    if (current > 0) {
+      self.currentId(--current);
+    }
+  };
+
   self.loadQuestions = function() {
-    console.log("loading questions");
     questionsAndAnswers.forEach(obj => {
-      self.questionsObjects.push(
-        new QuestionModel(obj.question, obj.answers, obj.correctAnswer, obj.id)
-      );
+      self
+        .questionsObjects()
+        .push(
+          new QuestionModel(
+            obj.question,
+            obj.answers,
+            obj.correctAnswer,
+            obj.id
+          )
+        );
     });
   };
-
-  self.loadQuestionComponent = function() {
-    const container = document.getElementById("questions-container");
-    const questionObject = self.questionsObjects[self.currentId - 1];
-    // container.innerHTML = `
-    //   <questions-answers
-    //     params="triviaQuestion: questionObject.question,
-    //     triviaAnswersArray: questionObject.answers,
-    //     correctAnswer: questionObject.correctAnswer,
-    //     id: questionObject.id"></questions-answers>
-    // `;
-    container.innerHTML = `
-      <questions-answers
-        params="triviaQuestion: 'question',
-        triviaAnswersArray: ['answer1', 'answer2', 'answer3'],
-        correctAnswer: 'correct answer',
-        id: '1'"></questions-answers>
-    `;
-  };
-
-  // self.loadQuestionIntoView = function(id) {
-  //   const index = self.answeredQuestions().findIndex(obj => {
-  //     return obj.id === parseInt(id);
-  //   });
-  //   if (index !== -1) {
-  //     self.currentQuestion = self.answeredQuestions()[index];
-  //   }
-  // };
 
   self.setUserName = ko.computed({
     read: function() {
@@ -69,7 +66,6 @@ function OverviewModel() {
     write: function() {
       self.userNameSet(true);
       self.loadQuestions();
-      self.loadQuestionComponent();
     },
     owner: self
   });
@@ -88,25 +84,25 @@ function OverviewModel() {
     owner: self
   });
 
-  ko.components.register("questions-answers", {
-    // viewModel: QuestionModel,
+  ko.components.register("question-answers", {
     viewModel: function(params) {
-      console.log("params: ", params);
-      var self = this;
-      self.triviaQuestion = ko.observable(params.triviaQuestion);
-      // self.triviaAnswers = ko.observableArray(params.triviaAnswersArray);
-      self.triviaAnswers = params.triviaAnswersArray;
-
-      self.correctAnswer = params.correctAnswer;
-
-      self.id = params.id;
+      console.log("params passed into custom component: ", params);
+      self.questionObject = params;
     },
     template: `
-      <h4>Question:</h4><pre data-bind="text: question">
-      <h4>Answers:</h4>
-      <div data-bind="foreach: answers">
-        <input type="radio" data-bind="attr: { name: id }" /><pre data-bind="text: $data">
-      </div>
+    <ul class="questions-answers-ul">
+        <li class="question-li">
+        Question: <pre data-bind="text: 'test'" /><br />
+        Answers:<br />
+          <ul>
+            <li class="answer-li">
+              <input
+                type="radio" />
+              <pre class="answer-label" data-bind="text: $data" />
+            </li>
+          </ul>
+        </li>
+      </ul>
     `
   });
 }
