@@ -22,7 +22,9 @@ function OverviewModel() {
 
   self.questionsObjects = ko.observableArray([]);
 
-  self.currentQuestion = self.questionsObjects()[self.currentId()];
+  self.currentQuestion = ko.observable(
+    self.questionsObjects()[self.currentId()]
+  );
 
   self.submitted = ko.observable(false);
 
@@ -30,18 +32,18 @@ function OverviewModel() {
 
   self.onNext = function() {
     var current = parseInt(self.currentId());
-    console.log("current id: ", current);
     if (current < 9) {
       self.currentId(++current);
     }
+    console.log("current id: ", current);
   };
 
   self.onPrevious = function() {
     var current = parseInt(self.currentId());
-    console.log("current id: ", current);
     if (current > 0) {
       self.currentId(--current);
     }
+    console.log("current id: ", current);
   };
 
   self.loadQuestions = function() {
@@ -57,6 +59,7 @@ function OverviewModel() {
           )
         );
     });
+    console.log("questions loaded: ", self.questionsObjects().toString());
   };
 
   self.setUserName = ko.computed({
@@ -65,7 +68,7 @@ function OverviewModel() {
     },
     write: function() {
       self.userNameSet(true);
-      self.loadQuestions();
+      // self.loadQuestions();
     },
     owner: self
   });
@@ -84,25 +87,28 @@ function OverviewModel() {
     owner: self
   });
 
+  self.loadQuestions();
+
   ko.components.register("question-answers", {
     viewModel: function(params) {
-      console.log("params passed into custom component: ", params);
-      self.questionObject = params;
+      var self = this;
+      self.questionObject = params.questionObject();
+      console.log("question object: ", params.questionObject());
     },
     template: `
     <ul class="questions-answers-ul">
-        <li class="question-li">
-        Question: <pre data-bind="text: 'test'" /><br />
-        Answers:<br />
-          <ul>
-            <li class="answer-li">
-              <input
-                type="radio" />
-              <pre class="answer-label" data-bind="text: $data" />
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <li class="question-li">
+      Question: <pre data-bind="text: questionObject.question" /><br />
+      Answers:<br />
+        <ul data-bind="foreach: questionObject.answers">
+          <li class="answer-li">
+            <input
+              type="radio" />
+            <pre class="answer-label" data-bind="text: $data, attr: {name: $data}" />
+          </li>
+        </ul>
+      </li>
+    </ul>
     `
   });
 }

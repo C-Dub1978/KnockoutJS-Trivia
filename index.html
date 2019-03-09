@@ -45,7 +45,24 @@
       <div class="col-sm-2 arrow-container-left" data-bind="click: onPrevious, visible: userNameSet()"><i class="far fa-arrow-alt-circle-left fa-2x icon-colored" data-bind="enable: currentId > 0"></i></div>
       <div class="col-sm-8 questions-container" data-bind="visible: !submitted() && userNameSet()">
         <h3>Current Question</h3>
-        <question-answers params="$root.questionsObjects()[0]"></question-answers>
+        <!-- <question-answers params="{questionObject: questionsObjects()[currentId()]}"></question-answers> -->
+
+        <ul class="questions-answers-ul">
+          <li class="question-li">
+            Question:
+            <pre data-bind="text: questionsObjects()[currentId()].question" /><br />
+              Answers:<br />
+                <ul data-bind="foreach: questionsObjects()[currentId()].answers">
+                  <li class="answer-li">
+                    <input
+                      type="radio" />
+                    <pre class="answer-label" data-bind="text: $data, attr: {name: $data}" /><span data-bind="text: $data"></span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+
       </div>
       <div class="col-sm-8 questions-container" data-bind="visible: submitted()">Results: </div>
       <div class="col-sm-2 arrow-container-right" data-bind="click: onNext, visible: userNameSet()"><i class="far fa-arrow-alt-circle-right fa-2x icon-colored" data-bind="enable: currentId < 9"></i></div>
