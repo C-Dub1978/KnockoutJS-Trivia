@@ -13,71 +13,14 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet"
+    <link
+      rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous">
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <div class="row centered">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8"><h3 data-bind="text: header"></h3></div>
-      <div class="col-sm-2"></div>
-    </div>
-    <!--End Header Text Top of Page -->
-
-    <!--Start Username Container -->
-    <div class="row centered">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8" data-bind="visible: !userNameSet()">
-        <label for="userName">Enter Username:</label><br />
-        <input type="text"
-          data-bind="value: userName"
-          id="userName" />
-        <button data-bind="click: setUserName">Submit</button>
-      </div>
-      <div class="col-sm-2"></div>
-    </div>
-    <!--End Username Container-->
-
-    <!-- Start Trivia Questions/Results Container-->
-    <div class="row">
-      <div class="col-sm-2 arrow-container-left" data-bind="click: onPrevious, visible: userNameSet()"><i class="far fa-arrow-alt-circle-left fa-2x icon-colored" data-bind="enable: currentId > 0"></i></div>
-      <div class="col-sm-8 questions-container" data-bind="visible: !submitted() && userNameSet()">
-        <h3>Current Question</h3>
-        <!-- <question-answers params="{questionObject: questionsObjects()[currentId()]}"></question-answers> -->
-
-        <ul class="questions-answers-ul">
-          <li class="question-li">
-            Question:
-            <pre data-bind="text: questionsObjects()[currentId()].question" /><br />
-              Answers:<br />
-                <ul data-bind="foreach: questionsObjects()[currentId()].answers">
-                  <li class="answer-li">
-                    <input
-                      type="radio" />
-                    <pre class="answer-label" data-bind="text: $data, attr: {name: $data}" /><span data-bind="text: $data"></span>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-
-
-      </div>
-      <div class="col-sm-8 questions-container" data-bind="visible: submitted()">Results: </div>
-      <div class="col-sm-2 arrow-container-right" data-bind="click: onNext, visible: userNameSet()"><i class="far fa-arrow-alt-circle-right fa-2x icon-colored" data-bind="enable: currentId < 9"></i></div>
-    </div>
-    <!-- End Trivia Question Container-->
-
-    <hr>
-    <div class="row centered">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8">
-        <button class="btn btn-secondary" data-bind="enable: allQuestionsAnswered, click: toggleSubmitted">
-          Grade Me!
-        </button>
-      </div>
-      <div class="col-sm-2"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
