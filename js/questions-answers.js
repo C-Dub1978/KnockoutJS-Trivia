@@ -1,5 +1,5 @@
 // The array of all 20 questions and answers
-function questionsAndAnswers() {
+function getAllQuestionsAndAnswers() {
   return [
     {
       question: `

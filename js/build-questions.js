@@ -21,7 +21,7 @@ function buildQuestions(initialArray, newArrayLength) {
     // go out of array bounds
     const randomNum = Math.floor(Math.random() * (initialArrayCopy.length - 1));
     // Splice the array copy at the random number index, thus removing that
-    // object, adding it to our new array, and lengthening the copied array by
+    // object, adding it to our new array, and shortening the copied array by
     // 1
     const splicedObject = initialArrayCopy.splice(randomNum, 1);
     // Build a QuestionAnswers object

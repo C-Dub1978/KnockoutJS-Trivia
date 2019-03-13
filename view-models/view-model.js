@@ -1,1 +1,3 @@
-function MainViewModel() {}
+function MainViewModel() {
+  const self = this;
+}
