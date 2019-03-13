@@ -5,7 +5,7 @@
  *
  * @param {[]} initialArray
  */
-exports.buildQuestions = (initialArray, newArrayLength) => {
+function buildQuestions(initialArray, newArrayLength) {
   // Make sure the new array length is less than the first argument length
   if (initialArray.length < newArrayLength) {
     newArrayLength = initialArray.length - 1;
@@ -24,9 +24,22 @@ exports.buildQuestions = (initialArray, newArrayLength) => {
     // object, adding it to our new array, and lengthening the copied array by
     // 1
     const splicedObject = initialArrayCopy.splice(randomNum, 1);
+    // Build a QuestionAnswers object
+    const qa = new QuestionAnswers(
+      splicedObject[0].question,
+      splicedObject[0].answers,
+      splicedObject[0].correctAnswerIndex
+    );
     // Push the randomly pulled object to our new array
-    newArray.push(splicedObject);
+    newArray.push(qa);
   }
   // Return the new array
   return newArray;
-};
+}
+
+function QuestionAnswers(question, answers, correctAnswerIndex) {
+  this.question = question;
+  this.answers = ko.observable(answers);
+  this.correctAnswerIndex = correctAnswerIndex;
+  this.isCorrect = false;
+}

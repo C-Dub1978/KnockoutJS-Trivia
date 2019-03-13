@@ -22,12 +22,13 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
-    <!-- <script src="view-models/main-view-model.js"></script> -->
+    <script src="/js/build-questions.js"></script>
+    <script src="/js/questions-answers.js"></script>
     <script src="view-models/view-model.js"></script>
     <script>
       // Load the viewModel after DOM is rendered
       $(document).ready(function() {
-        // ko.applyBindings( ....... );
+        ko.applyBindings(new OverviewModel());
       });
     </script>
   </body>
