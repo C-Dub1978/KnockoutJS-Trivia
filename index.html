@@ -13,8 +13,31 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link
+      href="https://fonts.googleapis.com/css?family=Catamaran:300,700|Shadows+Into+Light"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <div class="container-fluid">
+      <div class="row">
+        <header class="header">
+          <h1>Knockout.js</h1>
+        </header>
+      </div>
+    </div>
+    <!--Spacer row, 50px -->
+    <div class="row spacer-row"></div>
+    <!-- 3 columns, left, main, right-->
+    <div class="row">
+      <div class="col-sm-2 outer-col"></div>
+      <!--Inject templates here: landing, questions, results -->
+      <div class="col-sm-8 center-col">
+        <!-- START INJECTED CONTENT -->
+        <!--END INJECTED CONTENT -->
+      </div>
+      <div class="col-sm-2 outer-col"></div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
