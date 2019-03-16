@@ -23,6 +23,9 @@
       <div class="row">
         <header class="header">
           <h1>Knockout.js</h1>
+          <h1 data-bind="visible: userName()">
+            Welcome, <span data-bind="text: userName()">!</span>
+          </h1>
         </header>
       </div>
     </div>
