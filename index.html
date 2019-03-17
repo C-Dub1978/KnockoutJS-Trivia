@@ -17,6 +17,12 @@
       href="https://fonts.googleapis.com/css?family=Catamaran:300,700|Shadows+Into+Light"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div class="container-fluid">
@@ -37,6 +43,17 @@
       <!--Inject templates here: landing, questions, results -->
       <div class="col-sm-8 center-col">
         <!-- START INJECTED CONTENT -->
+        <!-- <div data-bind="if: !userNameSet()">
+          <div data-bind="template: { name: 'landing-container' }"></div>
+        </div>
+        <div data-bind="if: userNameSet()">
+          <div data-bind="template: { name: 'q&a-container' }"></div>
+        </div>
+        <div data-bind="if: answersSubmitted()">
+          <div
+            data-bind="template: { name: 'results-container' }, visible: userNameSet()"
+          ></div>
+        </div> -->
         <!--END INJECTED CONTENT -->
       </div>
       <div class="col-sm-2 outer-col"></div>
@@ -51,6 +68,61 @@
     <script src="/js/build-questions.js"></script>
     <script src="/js/questions-answers.js"></script>
     <script src="view-models/view-model.js"></script>
+    <!--TEMPLATES -->
+    <!--Landing page template -->
+    <script type="text/html" id="landing-container">
+      <div class="landing-container">
+        <div class="row landing-header">
+          <div class="javascript-quiz">
+            <h1>Javascript Quiz</h1>
+          </div>
+          <div class="test-your-knowledge">
+            <h3>Test your knowledge of beginner Javascript</h3>
+          </div>
+        </div>
+        <div class="row landing-userName">
+          <div class="userName">
+            <label for="userName">User Name:</label>
+            <input
+              type="text"
+              data-bind="value: userName()"
+              id="userName"
+              class="form-control"
+            />
+          </div>
+          <div class="submit">
+            <button class="btn-submit" data-bind="click: submitUsername">
+              Begin!
+            </button>
+          </div>
+        </div>
+      </div>
+    </script>
+    <!--End landing page template -->
+    <!--Q&A template -->
+    <script type="text/html" id="q&a-container"></script>
+    <!-- End Q&A template-->
+    <!--Results template -->
+    <script type="text/html" id="results-container">
+      <div class="results-container" id="results-container">
+        <h1>Results</h1>
+        <h3>
+          <span data-bind="text: results-percent" /> Correct!
+        </h3>
+        <h3>
+          Knowledge rank: <span data-bind="results-rank" />
+        </h3>
+        <h4 data-bind="visible: results-percent() < 100">Missed questions</h4>
+        <div class="missed-questions-container">
+          <p>Question</p>
+          <p>Answer:</p>
+        </div>
+        <button class="btn btn-secondary" id="restart-button">
+          Try Again
+        </button>
+      </div>
+    </script>
+    <!--End results template -->
     <script>
       // Load the viewModel after DOM is rendered
       $(document).ready(function() {

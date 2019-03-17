@@ -1,13 +1,19 @@
-<div class="results-container" id="results-container">
-  <h1>Results</h1>
-  <h3><span data-bind="text: results-percent"></span> Correct!</h3>
-  <h3>Knowledge rank: <span data-bind="results-rank"></span></h3>
-  <h4 data-bind="visible: results-percent() < 100">Missed questions</h4>
-  <div class="missed-questions-container">
-    <p>Question</p>
-    <p>Answer:</p>
-  </div>
-  <button class="btn btn-secondary" id="restart-button">
-    Try Again
-  </button>
-</div>
+<script type="text/html" id="results-container">
+  <div class="results-container" id="results-container">
+    <h1>Results</h1>
+    <h3>
+      <span data-bind="text: results-percent" /> Correct!
+    </h3>
+    <h3>
+      Knowledge rank: <span data-bind="results-rank" />
+    </h3>
+    <h4 data-bind="visible: results-percent() < 100">Missed questions</h4>
+    <div class="missed-questions-container">
+      <p>Question</p>
+      <p>Answer:</p>
+    </div>
+    <button class="btn btn-secondary" id="restart-button">
+      Try Again
+    </button>
+  </div>;
+</script>

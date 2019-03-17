@@ -7,7 +7,11 @@ function MainViewModel() {
   // Length 10 array of questionsAnswers objects
   self.questionsArray = populateQuestions();
   // Username
-  self.userName = ko.observable();
+  self.userName = ko.observable("");
+  // Username set boolean flag
+  self.userNameSet = ko.observable(false);
+  // All answers submitted
+  self.answersSubmitted = ko.observable(false);
   // Username setter
   self.submitUsername = function() {
     let inputName = $("#userName").val();
@@ -15,7 +19,10 @@ function MainViewModel() {
       inputName = "Player 1";
     }
     self.userName(inputName);
+    self.userNameSet(true);
   };
+  self.currentQuestionNumber = ko.observable(3);
+  self.progress = ko.observable("15%");
 }
 
 /**

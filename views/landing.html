@@ -1,26 +1,28 @@
-<div class="landing-container" id="landing-container">
-  <div class="row landing-header">
-    <div class="javascript-quiz">
-      <h1>Javascript Quiz</h1>
+<script type="text/html" id="landing-container">
+  <div class="landing-container">
+    <div class="row landing-header">
+      <div class="javascript-quiz">
+        <h1>Javascript Quiz</h1>
+      </div>
+      <div class="test-your-knowledge">
+        <h3>Test your knowledge of beginner Javascript</h3>
+      </div>
     </div>
-    <div class="test-your-knowledge">
-      <h3>Test your knowledge of beginner Javascript</h3>
+    <div class="row landing-userName">
+      <div class="userName">
+        <label for="userName">User Name:</label>
+        <input
+          type="text"
+          data-bind="value: userName()"
+          id="userName"
+          class="form-control"
+        />
+      </div>
+      <div class="submit">
+        <button class="btn-submit" data-bind="click: submitUsername">
+          Begin!
+        </button>
+      </div>
     </div>
   </div>
-  <div class="row landing-userName">
-    <div class="userName">
-      <label for="userName">User Name:</label>
-      <input
-        type="text"
-        data-bind="value: userName()"
-        id="userName"
-        class="form-control"
-      />
-    </div>
-    <div class="submit">
-      <button class="btn-submit" data-bind="click: submitUsername">
-        Begin!
-      </button>
-    </div>
-  </div>
-</div>
+</script>
