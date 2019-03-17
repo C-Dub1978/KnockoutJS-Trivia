@@ -138,7 +138,7 @@ body {
 }
 
 .row.question-answers-navigation-icons {
-  height: 100px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
 }
@@ -211,7 +211,8 @@ body {
 }
 
 .btn-submit:hover,
-.btn-submit:active {
+.btn-submit:active,
+.btn-submit:focus {
   color: #000;
   background-color: #fe834d;
   border-color: #fe834d;
@@ -219,9 +220,16 @@ body {
   font-family: "Shadows Into Light", cursive;
 }
 
+.row.submit-all-questions {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 60px;
+}
+
 .missed-questions-container {
   width: 80%;
-  height: 250px;
+  height: 238px;
   overflow-y: scroll;
   background: #fff;
   font-family: "Catamaran", sans-serif;
