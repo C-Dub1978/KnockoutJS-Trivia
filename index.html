@@ -55,8 +55,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
-    <script src="/js/build-questions.js"></script>
-    <script src="/js/questions-answers.js"></script>
+    <script href="/js/build-questions.js"></script>
+    <script href="/js/questions-answers.js"></script>
     <script src="view-models/view-model.js"></script>
     <!--TEMPLATES -->
     <!--Landing page template -->
@@ -67,7 +67,7 @@
             <h1>Javascript Quiz</h1>
           </div>
           <div class="test-your-knowledge">
-            <h3>Test your knowledge of beginner Javascript</h3>
+            <h3>Test your knowledge of beginner JavaScript</h3>
           </div>
         </div>
         <div class="row landing-userName">
@@ -78,6 +78,8 @@
               data-bind="value: userName()"
               id="userName"
               class="form-control"
+              onkeyup="characterCheck(this)"
+              onblur="characterCheck(this)"
             />
           </div>
           <div class="submit">
@@ -174,5 +176,11 @@
         ko.applyBindings(new MainViewModel());
       });
     </script>
+    <script type="text/JavaScript">
+      // Checking input for restricted characters - removes violations
+      function characterCheck(j) {
+      !(/^[A-z;0-9]*$/i).test(j.value)?j.value = j.value.replace(/[^A-z;0-9]/ig,''):null;
+      }
+      </script>
   </body>
 </html>
