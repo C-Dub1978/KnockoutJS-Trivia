@@ -55,8 +55,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
-    <script href="/js/build-questions.js"></script>
-    <script href="/js/questions-answers.js"></script>
+    <script src="/js/build-questions.js"></script>
+    <script src="/js/questions-answers.js"></script>
     <script src="view-models/view-model.js"></script>
     <!--TEMPLATES -->
     <!--Landing page template -->
@@ -176,11 +176,13 @@
         ko.applyBindings(new MainViewModel());
       });
     </script>
-    <script type="text/JavaScript">
+    <script>
       // Checking input for restricted characters - removes violations
       function characterCheck(j) {
-      !(/^[A-z;0-9]*$/i).test(j.value)?j.value = j.value.replace(/[^A-z;0-9]/ig,''):null;
+        !/^[A-z;0-9]*$/i.test(j.value)
+          ? (j.value = j.value.replace(/[^A-z;0-9]/gi, ""))
+          : null;
       }
-      </script>
+    </script>
   </body>
 </html>
