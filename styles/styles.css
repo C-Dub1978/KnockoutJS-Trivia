@@ -9,7 +9,7 @@ html {
 
 body {
   width: 100%;
-  background-color: #80e5fe!important;
+  background-color: #80e5fe !important;
 }
 
 .header {
@@ -17,7 +17,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  height: 180px;
+  height: 100px;
   width: 100%;
   background-color: black;
   color: #fedc3d;
@@ -230,7 +230,7 @@ body {
 }
 
 .missed-questions-container {
-  width: 80%;
+  width: 95%;
   height: 238px;
   overflow-y: scroll;
   background: #fff;

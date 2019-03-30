@@ -77,11 +77,11 @@ function getAllQuestionsAndAnswers() {
       correctAnswerIndex: 1
     },
     {
-      question:
-        "What is the proper way to bring an external" +
-        "javascript file into a different" +
-        "javascript file when using the debugger in" +
-        "VSCode?",
+      question: `
+        What is the proper way to bring an external javascript file
+        into a different javascript file when using the debugger in
+        VSCode?
+        `,
       answers: [
         "const externalLibrary = module.imports(‘jquery.min.js’);",
         "const externalLibrary = module.require(‘jquery.min.js’);",
@@ -91,9 +91,10 @@ function getAllQuestionsAndAnswers() {
       correctAnswerIndex: 3
     },
     {
-      question:
-        "What is the correct way to alter the text" +
-        "inside the following html element?",
+      question: `
+        What is the correct way to alter the text
+        inside the following html element?
+        `,
       answers: [
         "document.getElement(‘container’).innerHTML = ‘This is the new text’;",
         "document.queryId(‘container’).innerHTML = ‘This is the new text’;",
@@ -106,7 +107,8 @@ function getAllQuestionsAndAnswers() {
       question: "Which of these best describes the “Execution Context”?",
       answers: [
         "A wrapper that helps to manage the code that is currently running",
-        "A wrapper that helps to manage ALL of your code, not just the code that is currently running",
+        `A wrapper that helps to manage ALL of your code, not just the
+        code that is currently running`,
         "Where something sits physically in the code that you write",
         "Where your code sits in memory"
       ],
@@ -137,16 +139,16 @@ function getAllQuestionsAndAnswers() {
     `,
       answers: [
         "It returns the value",
-        "It will always return 2",
-        "It will always return 1",
-        "It will return 1 if val is true, otherwise, it will return 2"
+        "It will always return js",
+        "It will always return javascript",
+        "It will return js if val is true, otherwise, it will return javascript"
       ],
       correctAnswerIndex: 3
     },
     {
-      question: `Which operator matches this definition: “a strict equality"
-        "operator that returns true when two operands have the same value"
-        "without coercion.“`,
+      question: `Which operator matches this definition: “a strict equality
+        operator that returns true when two operands have the same
+        value without coercion.“`,
       answers: ["===", "==", "+=", "-="],
       correctAnswerIndex: 0
     },
@@ -180,7 +182,7 @@ function getAllQuestionsAndAnswers() {
     {
       question: `
     What index number is “Red” in the following array?
-    Var color = [“Red”, “Blue”, “Green”];
+    var color = [“Red”, “Blue”, “Green”];
     `,
       answers: ["0", "1", "2", "3"],
       correctAnswerIndex: 0
@@ -219,9 +221,9 @@ function getAllQuestionsAndAnswers() {
       correctAnswerIndex: 2
     },
     {
-      question:
-        "What type of object do other objects inherit properties" +
-        "and methods from?",
+      question: `What type of object do other objects inherit properties
+        and methods from?
+        `,
       answers: ["Prototype", "Native", "Host", "User-Defined"],
       correctAnswerIndex: 0
     },
