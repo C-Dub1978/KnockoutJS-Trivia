@@ -160,9 +160,12 @@
           Knowledge rank: <span data-bind="results-rank" />
         </h3>
         <h4 data-bind="visible: resultsPercent() < 100">Missed questions</h4>
-        <div class="missed-questions-container">
-          <p>Question</p>
-          <p>Answer:</p>
+        <div class="missed-questions-container" data-bind="foreach: questionsArray">
+          <div class="individual-missed-question" data-bind="visible: !$data.isCorrect">
+            <div class="question"><pre data-bind="text: $data.question"></pre></div>
+            <p>Your Answer: <span class="answers"><pre data-bind="text: 'todo: fix'"></pre></span></p>
+            <p>Correct Answer: <span class="answers"><pre data-bind="text: $data.answers()[$data.correctAnswerIndex]"></pre></span></p>
+          </div>
         </div>
         <button class="btn btn-secondary" id="restart-button" data-bind="click: restartGame">
           Try Again
