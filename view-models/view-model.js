@@ -20,6 +20,13 @@ function MainViewModel() {
   self.resultsPercent = ko.observable(0);
 
   // HELPER FUNCTIONS
+
+  // Handler for when the user selects an answer
+  self.onRadioChange = function(data, event) {
+    const selectedIndex = event.target.value;
+    self.questionsArray()[self.currentId()].setAnswer(selectedIndex);
+  };
+
   // Username setter
   self.submitUsername = function() {
     let inputName = $("#userName").val();

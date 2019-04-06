@@ -119,7 +119,7 @@
               <li>
                 <input
                   type="radio"
-                  data-bind="attr: { name: $parent.currentId(), value: $parent.currentId() }"
+                  data-bind="attr: { name: $parent.currentId(), value: $parent.currentId() }, checkedValue: $index, event: { change: $parent.onRadioChange }"
                 /><pre data-bind="text: $data"></pre>
               </li>
             </ul>
