@@ -43,8 +43,10 @@ function QuestionAnswers(question, answers, correctAnswerIndex) {
   this.correctAnswerIndex = correctAnswerIndex;
   this.isCorrect = ko.observable(false);
   this.currentAnswerIndex = ko.observable(null);
+  this.chosenQuestion = ko.observable(null);
   this.setAnswer = function(index) {
     this.currentAnswerIndex(index);
     this.isCorrect(this.currentAnswerIndex() == this.correctAnswerIndex);
+    this.chosenQuestion(this.answers()[index]);
   };
 }
