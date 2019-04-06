@@ -158,9 +158,9 @@ function getAllQuestionsAndAnswers() {
       correctAnswerIndex: 3
     },
     {
-      question:
-        "What word means to link strings together in a series or chain" +
-        "(or put two things together)?",
+      question: `What word means to link strings together in a series
+        or chain (or put two things together)?
+        `,
       answers: ["Sequence", "Concatenate", "Integrate", "Divide"],
       correctAnswerIndex: 1
     },

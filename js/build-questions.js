@@ -41,15 +41,10 @@ function QuestionAnswers(question, answers, correctAnswerIndex) {
   this.question = question;
   this.answers = ko.observable(answers);
   this.correctAnswerIndex = correctAnswerIndex;
-  this.isCorrect = false;
-  this.currentAnswerIndex = null;
+  this.isCorrect = ko.observable(false);
+  this.currentAnswerIndex = ko.observable(null);
   this.setAnswer = function(index) {
-    this.currentAnswerIndex = index;
-    this.isCorrect = this.currentAnswerIndex === this.correctAnswerIndex;
-    console.log(
-      `correct answer index: ${
-        this.correctAnswerIndex
-      }, current answer index: ${this.currentAnswerIndex}`
-    );
+    this.currentAnswerIndex(index);
+    this.isCorrect(this.currentAnswerIndex() == this.correctAnswerIndex);
   };
 }
