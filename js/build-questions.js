@@ -45,8 +45,16 @@ function QuestionAnswers(question, answers, correctAnswerIndex) {
   this.currentAnswerIndex = ko.observable(null);
   this.chosenQuestion = ko.observable(null);
   this.setAnswer = function(index) {
+    index = Number(index);
     this.currentAnswerIndex(index);
     this.isCorrect(this.currentAnswerIndex() == this.correctAnswerIndex);
     this.chosenQuestion(this.answers()[index]);
+  };
+  this.getCurrentAnswerIndex = function() {
+    // if (this.currentAnswerIndex() == null) {
+    //   return 0;
+    // } else {
+    //   return this.currentAnswerIndex();
+    // }
   };
 }
