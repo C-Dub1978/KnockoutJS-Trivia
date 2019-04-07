@@ -140,7 +140,7 @@
             class="col-sm-3 right-arrow"
             data-bind="click: navigateNext"
           >
-            <i data-bind="visible: currentId() !== 9" class="far fa-arrow-alt-circle-right fa-2x"></i>
+            <i data-bind="visible: currentId() !== 9 && questionsArray()[currentId()].currentAnswerIndex() != null" class="far fa-arrow-alt-circle-right fa-2x"></i>
           </div>
           <div class="col-sm-3"></div>
         </div>

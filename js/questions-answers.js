@@ -189,7 +189,7 @@ function getAllQuestionsAndAnswers() {
     },
     {
       question:
-        "What is the proper way embed an external JavaScript" +
+        "What is the proper way to embed an external JavaScript" +
         "file in an HTML document?",
       answers: [
         `<script link=”main.js”></script>`,
