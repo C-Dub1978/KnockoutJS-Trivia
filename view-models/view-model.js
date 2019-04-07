@@ -18,6 +18,8 @@ function MainViewModel() {
   self.progress = ko.observable("");
   // Percentage of questions correct
   self.resultsPercent = ko.observable(0);
+  // Percentage of progress for Progress bar
+  self.percentage = ko.observable(0);
 
   // HELPER FUNCTIONS
 
@@ -35,6 +37,7 @@ function MainViewModel() {
     }
     self.userName(inputName);
     self.currentTemplate("qa-container");
+    self.updatePercentage();
   };
 
   // Click handler for previous button
@@ -43,6 +46,7 @@ function MainViewModel() {
     if (id > 0) {
       self.currentId(id - 1);
     }
+    self.updatePercentage();
   };
 
   // Click handler for next button
@@ -51,6 +55,7 @@ function MainViewModel() {
     if (id < self.questionsArray().length - 1) {
       self.currentId(id + 1);
     }
+    selfupdatePercentage();
   };
 
   // Click handler for grading submission
@@ -68,6 +73,13 @@ function MainViewModel() {
     self.currentTemplate("landing-container");
     self.progress("");
     self.resultsPercent(0);
+  };
+
+  // Updates percentage for progress bar.
+  // called by submitUsername, navigatePrevious, and navigateNext
+  self.updatePercentage = function() {
+    const id = parseInt(self.currentId());
+    self.percentage((id + 1) * 10 + "%");
   };
 }
 
