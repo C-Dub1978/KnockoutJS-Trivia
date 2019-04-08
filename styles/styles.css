@@ -82,7 +82,7 @@ body {
 }
 
 .row.progress {
-  height: 20px;
+  height: 40px;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -237,4 +237,10 @@ body {
   font-family: "Catamaran", sans-serif;
   border: 1px solid black;
   margin-bottom: 8px;
+}
+
+.percentage-text {
+  font-size: 1.2rem;
+  font-family: "Catamaran", sans-serif;
+  color: #fedc3d;
 }
