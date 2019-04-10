@@ -17,11 +17,11 @@ function MainViewModel() {
   // Progress through the trivia questions
   self.progress = ko.observable("");
   // Percentage of questions correct
-  self.resultsPercent = ko.observable(20);
+  self.resultsPercent = ko.observable(0);
   // Percentage of progress for Progress bar
   self.percentage = ko.observable(0);
   // Results rank observable
-  self.resultsRank = ko.observable("Expert");
+  self.resultsRank = ko.observable("");
   // HELPER FUNCTIONS
 
   // Handler for when the user selects an answer
