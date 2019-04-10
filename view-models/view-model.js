@@ -63,6 +63,7 @@ function MainViewModel() {
   self.submitAll = function() {
     self.currentTemplate("results-container");
     self.answersSubmitted(true);
+    self.displayScore();
   };
 
   // Click handler for restart button
@@ -73,7 +74,7 @@ function MainViewModel() {
     self.currentId(0);
     self.currentTemplate("landing-container");
     self.progress("");
-    self.resultsPercent(0);
+    self.resultsPercent(answerPercentage + '%');
     self.percentage(0);
   };
 
@@ -83,7 +84,29 @@ function MainViewModel() {
     const id = parseInt(self.currentId());
     self.percentage((id + 1) * 10 + "%");
   };
+
+  //Grading function that outputs the user rank and score percentage.
+  self.displayScore = function() {
+    var score = 0;
+    for (var i = 0; i < self.questionsArray().length; i++) {
+      if ( self.questionsArray()[i].isCorrect() === true) {
+        score++;
+      }
+
+    var answerPercentage = score * 10; 
+
+      if (answerPercentage <= 60) {
+        self.resultsRank('Beginner');
+      } else if (answerPercentage > 60 && answerPercentage <= 80 ) {
+        self.resultsRank('Novice');
+      } else {
+        self.resultsRank('Expert');
+      }
+    }
+    self.resultsPercent(answerPercentage + '%');
+  }
 }
+
 
 /**
  * Helper function, calls on the files in /js folder to get the original 20
