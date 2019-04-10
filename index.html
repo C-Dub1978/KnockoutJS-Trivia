@@ -171,7 +171,7 @@
           <span data-bind="text: resultsPercent()" /> Correct!
         </h3>
         <h3>
-          Knowledge rank: <span data-bind="results-rank" />
+          Knowledge rank: <span data-bind="text: resultsRank" />
         </h3>
         <h4 data-bind="visible: resultsPercent() < 100">Missed questions</h4>
         <div class="missed-questions-container" data-bind="foreach: questionsArray">

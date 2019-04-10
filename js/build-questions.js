@@ -50,11 +50,4 @@ function QuestionAnswers(question, answers, correctAnswerIndex) {
     this.isCorrect(this.currentAnswerIndex() == this.correctAnswerIndex);
     this.chosenQuestion(this.answers()[index]);
   };
-  this.getCurrentAnswerIndex = function() {
-    // if (this.currentAnswerIndex() == null) {
-    //   return 0;
-    // } else {
-    //   return this.currentAnswerIndex();
-    // }
-  };
 }
