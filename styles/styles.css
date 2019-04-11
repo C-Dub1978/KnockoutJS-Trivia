@@ -176,7 +176,8 @@ body {
   width: 100%;
 }
 
-.row.landing-userName {
+.row.landing-userName,
+.landing-questions-select {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -186,6 +187,10 @@ body {
   margin-bottom: 20px;
   margin-top: 40px;
   width: 100%;
+}
+
+.landing-questions-select {
+  width: 50%;
 }
 
 .userName {
