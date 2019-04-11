@@ -47,6 +47,7 @@ function MainViewModel() {
     if (id > 0) {
       self.currentId(id - 1);
       self.updatePercentage();
+      window.scrollTo(0, 0);
     }
   };
 
@@ -56,11 +57,13 @@ function MainViewModel() {
     if (id < self.questionsArray().length - 1) {
       self.currentId(id + 1);
       self.updatePercentage();
+      window.scrollTo(0, 0);
     }
   };
 
   // Click handler for grading submission
   self.submitAll = function() {
+    window.scrollTo(0, 0);
     self.currentTemplate("results-container");
     self.answersSubmitted(true);
     self.displayScore();
@@ -74,7 +77,8 @@ function MainViewModel() {
     self.currentId(0);
     self.currentTemplate("landing-container");
     self.progress("");
-    self.resultsPercent(answerPercentage + '%');
+    self.resultsPercent("");
+    self.resultsRank("");
     self.percentage(0);
   };
 
@@ -87,26 +91,24 @@ function MainViewModel() {
 
   //Grading function that outputs the user rank and score percentage.
   self.displayScore = function() {
-    var score = 0;
-    for (var i = 0; i < self.questionsArray().length; i++) {
-      if ( self.questionsArray()[i].isCorrect() === true) {
+    let score = 0;
+    for (let i = 0; i < self.questionsArray().length; i++) {
+      if (self.questionsArray()[i].isCorrect()) {
         score++;
       }
-
-    var answerPercentage = score * 10; 
-
-      if (answerPercentage <= 60) {
-        self.resultsRank('Beginner');
-      } else if (answerPercentage > 60 && answerPercentage <= 80 ) {
-        self.resultsRank('Novice');
-      } else {
-        self.resultsRank('Expert');
-      }
     }
-    self.resultsPercent(answerPercentage + '%');
-  }
+    const answerPercentage = score * 10;
+    if (answerPercentage <= 60) {
+      self.resultsRank("Beginner");
+    } else if (answerPercentage > 60 && answerPercentage <= 80) {
+      self.resultsRank("Novice");
+    } else {
+      self.resultsRank("Expert");
+    }
+    self.resultsPercent(answerPercentage);
+    console.log("results percent: ", self.resultsPercent());
+  };
 }
-
 
 /**
  * Helper function, calls on the files in /js folder to get the original 20
