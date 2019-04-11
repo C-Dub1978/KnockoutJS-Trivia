@@ -231,11 +231,17 @@ body {
 }
 
 .missed-questions-container {
-  background: #fff;
-  border: 1px solid black;
+  background: transparent;
   font-family: "Catamaran", sans-serif;
   margin-bottom: 8px;
   width: 95%;
+}
+
+.individual-missed-question {
+  background: #fff;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 35px;
 }
 
 .percentage-text {
@@ -245,13 +251,6 @@ body {
 }
 
 .answer-dark {
-  background-image: linear-gradient(
-    to right,
-    #fedc3d,
-    #ffc53a,
-    #ffae3e,
-    #ff9845,
-    #fe834d
-  );
+  background: #fedc3d;
   color: #01abaa;
 }

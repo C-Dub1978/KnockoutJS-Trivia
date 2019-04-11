@@ -106,16 +106,6 @@
               <span data-bind="text: percentage" class="percentage-text"></span>
           </div>
         </div>
-          <!-- <div
-            class="progress-bar progress-bar-striped progress-bar-animated"
-            role="progressbar"
-            style="width: 100%"
-            aria-valuenow="25"
-            aria-valuemin="0"
-            aria-valuemax="100"
-          >
-            <span data-bind="text: progress"></span>
-          </div> -->
         <div class="row question-number">
           <h3>
             Question Number
@@ -156,7 +146,9 @@
           <div class="col-sm-3"></div>
         </div>
         <div class="row submit-all-questions">
-          <button class="btn-submit" data-bind="visible: currentId() === 9, click: submitAll">
+          <button class="btn-submit"
+          data-bind="visible: currentId() === 9 &&
+            questionsArray()[9].currentAnswerIndex() != null, click: submitAll">
             Submit Answers
           </button>
         </div>
