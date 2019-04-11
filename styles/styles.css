@@ -243,3 +243,15 @@ body {
   font-family: "Catamaran", sans-serif;
   font-size: 1.2rem;
 }
+
+.answer-dark {
+  background-image: linear-gradient(
+    to right,
+    #fedc3d,
+    #ffc53a,
+    #ffae3e,
+    #ff9845,
+    #fe834d
+  );
+  color: #01abaa;
+}

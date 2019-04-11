@@ -168,21 +168,22 @@
       <div class="results-container" id="results-container">
         <h1>Results</h1>
         <h3>
-          <span data-bind="text: resultsPercent()" /> Correct!
+          <span data-bind="text: resultsPercent()" />% Correct!
         </h3>
         <h3>
-          Knowledge rank: <span data-bind="text: resultsRank" />
+          Knowledge rank: <span data-bind="text: resultsRank()" />
         </h3>
+        <hr />
         <h4 data-bind="visible: resultsPercent() < 100">Missed questions</h4>
         <div class="missed-questions-container" data-bind="foreach: questionsArray">
           <div class="individual-missed-question" data-bind="visible: !$data.isCorrect()">
             <div class="question"><pre data-bind="text: $data.question"></pre></div>
-            <p>Your Answer: <span class="answers"><pre data-bind="text: $data.chosenQuestion()"></pre></span></p>
-            <p>Correct Answer: <span class="answers"><pre data-bind="text: $data.answers()[$data.correctAnswerIndex]"></pre></span></p>
+            <p class="answer-dark">Your Answer: <span class="answers"><pre data-bind="text: $data.chosenQuestion()"></pre></span></p>
+            <p class="answer-dark">Correct Answer: <span class="answers"><pre data-bind="text: $data.answers()[$data.correctAnswerIndex]"></pre></span></p>
           </div>
         </div>
         <button class="btn btn-secondary" id="restart-button" data-bind="click: restartGame">
-          Try Again
+          Try Again!
         </button>
       </div>
     </script>
