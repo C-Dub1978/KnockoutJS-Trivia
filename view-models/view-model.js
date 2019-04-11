@@ -106,7 +106,6 @@ function MainViewModel() {
       self.resultsRank("Expert");
     }
     self.resultsPercent(answerPercentage);
-    console.log("results percent: ", self.resultsPercent());
   };
 }
 
