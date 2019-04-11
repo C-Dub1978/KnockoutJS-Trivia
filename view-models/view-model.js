@@ -13,7 +13,7 @@ function MainViewModel() {
   // Current id in the questionsArray
   self.currentId = ko.observable(0);
   // Current template view
-  self.currentTemplate = ko.observable("landing-container");
+  self.currentTemplate = ko.observable("select-number-of-questions");
   // Progress through the trivia questions
   self.progress = ko.observable("");
   // Percentage of questions correct
