@@ -25,7 +25,7 @@ function MainViewModel() {
   // Number of questions observable
   self.numberOfQuestions = ko.observable("");
   // Number of questions to choose from
-  self.amtQuestions = ko.observableArray(10, 15, 20);
+  self.amtQuestions = ko.observableArray([10, 15, 20]);
 
   // HELPER FUNCTIONS
 
