@@ -31,7 +31,11 @@ function MainViewModel() {
 
   // Initialize function
   self.initialize = function() {
-    console.log("Initialized");
+    if(self.numberOfQuestions == "Select below") {
+      self.numberOfQuestions = 10;
+    } else {
+      self.numberOfQuestions = parseInt(self.amtQuestions);
+    }
   }
 
   // Handler for when the user selects an answer
