@@ -22,7 +22,17 @@ function MainViewModel() {
   self.percentage = ko.observable(0);
   // Results rank observable
   self.resultsRank = ko.observable("");
+  // Number of questions observable
+  self.numberOfQuestions = ko.observable("");
+  // Number of questions to choose from
+  self.amtQuestions = ko.observableArray("10", "15", "20");
+
   // HELPER FUNCTIONS
+
+  // Initialize function
+  self.initialize = function() {
+    console.log("Initialized");
+  }
 
   // Handler for when the user selects an answer
   self.onRadioChange = function(data, event) {
