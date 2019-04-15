@@ -135,18 +135,19 @@
           </h3>
         </div>
         <div class="row question-answers-body">
-          <div class="question"><pre data-bind="text: questionsArray()[currentId()].question"></pre></div>
+          <div class="question">
+            <pre data-bind="text: questionsArray()[currentId()].question"></pre></div>
           <div class="answers">
-              <ul data-bind="foreach: questionsArray()[currentId()].answers">
-              <li>
-                <input
-                  type="radio"
-                  data-bind="attr: { name: $parent.currentId(),
-                    value: $parent.currentId() },
-                    checked: $parent.questionsArray()[$parent.currentId()].getCurrentAnswerIndex,
-                    checkedValue: $index,
-                    event: { change: $parent.onRadioChange }"
-                /><pre data-bind="text: $data"></pre>
+            <ul data-bind="foreach: questionsArray()[currentId()].answers">
+            <li>
+              <input
+                type="radio"
+                data-bind="attr: { name: $parent.currentId(),
+                  value: $parent.currentId() },
+                  checked: $parent.questionsArray()[$parent.currentId()].getCurrentAnswerIndex,
+                  checkedValue: $index,
+                  event: { change: $parent.onRadioChange }"
+              /><pre data-bind="text: $data"></pre>
               </li>
             </ul>
           </div>
@@ -157,20 +158,24 @@
             class="col-sm-3 left-arrow"
             data-bind="click: navigatePrevious"
           >
-            <i data-bind="visible: currentId() !== 0" class="far fa-arrow-alt-circle-left fa-2x"></i>
+            <i data-bind="visible: currentId() !== 0"
+              class="far fa-arrow-alt-circle-left fa-2x"></i>
           </div>
           <div
             class="col-sm-3 right-arrow"
             data-bind="click: navigateNext"
           >
-            <i data-bind="visible: currentId() !== 9 && questionsArray()[currentId()].currentAnswerIndex() != null" class="far fa-arrow-alt-circle-right fa-2x"></i>
+            <i data-bind="visible: currentId() !== (numberOfQuestions() - 1) &&
+              questionsArray()[currentId()].currentAnswerIndex() != null"
+              class="far fa-arrow-alt-circle-right fa-2x"></i>
           </div>
           <div class="col-sm-3"></div>
         </div>
         <div class="row submit-all-questions">
           <button class="btn-submit"
-          data-bind="visible: currentId() === 9 &&
-            questionsArray()[9].currentAnswerIndex() != null, click: submitAll">
+          data-bind="visible: currentId() == numberOfQuestions() - 1 &&
+            questionsArray()[numberOfQuestions() - 1].currentAnswerIndex() != null,
+            click: submitAll">
             Submit Answers
           </button>
         </div>
@@ -192,8 +197,12 @@
         <div class="missed-questions-container" data-bind="foreach: questionsArray">
           <div class="individual-missed-question" data-bind="visible: !$data.isCorrect()">
             <div class="question"><pre data-bind="text: $data.question"></pre></div>
-            <p class="answer-dark">Your Answer: <span class="answers"><pre data-bind="text: $data.chosenQuestion()"></pre></span></p>
-            <p class="answer-dark">Correct Answer: <span class="answers"><pre data-bind="text: $data.answers()[$data.correctAnswerIndex]"></pre></span></p>
+            <p class="answer-dark">Your Answer:
+              <span class="answers">
+                <pre data-bind="text: $data.chosenQuestion()"></pre></span></p>
+            <p class="answer-dark">Correct Answer:
+              <span class="answers">
+                <pre data-bind="text: $data.answers()[$data.correctAnswerIndex]"></pre></span></p>
           </div>
         </div>
         <button class="btn btn-secondary" id="restart-button" data-bind="click: restartGame">

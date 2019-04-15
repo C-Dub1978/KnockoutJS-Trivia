@@ -5,7 +5,7 @@ function MainViewModel() {
   // Reference to 'this'
   const self = this;
   // Length 10 array of questionsAnswers objects
-  self.questionsArray = ko.observableArray(populateQuestions());
+  self.questionsArray = ko.observableArray("");
   // Username
   self.userName = ko.observable("");
   // All answers submitted flag for rendering the results template
@@ -31,11 +31,11 @@ function MainViewModel() {
 
   // Initialize function
   self.initialize = function() {
-    if (self.numberOfQuestions === "Select below") {
-      self.numberOfQuestions = 10;
-    } else {
-      self.numberOfQuestions = parseInt(self.amtQuestions);
+    if (typeof self.numberOfQuestions() != "number") {
+      self.numberOfQuestions(10);
     }
+    self.questionsArray(populateQuestions(self.numberOfQuestions()));
+    self.currentTemplate("landing-container");
   };
 
   // Handler for when the user selects an answer
@@ -89,11 +89,12 @@ function MainViewModel() {
     self.userName("");
     self.answersSubmitted(false);
     self.currentId(0);
-    self.currentTemplate("landing-container");
+    self.currentTemplate("select-number-of-questions");
     self.progress("");
     self.resultsPercent("");
     self.resultsRank("");
     self.percentage(0);
+    self.numberOfQuestions("");
   };
 
   // Updates percentage for progress bar.
@@ -128,7 +129,7 @@ function MainViewModel() {
  * question array, and build an array of random questionsAnswers objects pulled
  * from that array.
  */
-function populateQuestions() {
+function populateQuestions(numQuestions) {
   const twentyQuestionsArray = getAllQuestionsAndAnswers();
-  return buildQuestions(twentyQuestionsArray, 10);
+  return buildQuestions(twentyQuestionsArray, numQuestions);
 }
