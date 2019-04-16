@@ -32,10 +32,11 @@ function MainViewModel() {
   // Initialize function
   self.initialize = function() {
     if (typeof self.numberOfQuestions() != "number") {
-      self.numberOfQuestions(10);
+    } else {
+      self.questionsArray(populateQuestions(self.numberOfQuestions()));
+      self.currentTemplate("landing-container");
     }
-    self.questionsArray(populateQuestions(self.numberOfQuestions()));
-    self.currentTemplate("landing-container");
+
   };
 
   // Handler for when the user selects an answer
@@ -101,6 +102,13 @@ function MainViewModel() {
   // called by submitUsername, navigatePrevious, and navigateNext
   self.updatePercentage = function() {
     const id = parseInt(self.currentId());
+    const testLength = parseInt(self.numberOfQuestions())
+    if(testLength === 20){
+      self.percentage((id + 1) * 5 + "%");
+    } else if(testLength === 15){
+      const intRound = Math.ceil((id + 1) * 6.66)
+      self.percentage(intRound + "%");
+    } else
     self.percentage((id + 1) * 10 + "%");
   };
 
