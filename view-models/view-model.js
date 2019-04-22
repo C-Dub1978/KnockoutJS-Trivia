@@ -36,7 +36,6 @@ function MainViewModel() {
       self.questionsArray(populateQuestions(self.numberOfQuestions()));
       self.currentTemplate("landing-container");
     }
-
   };
 
   // Handler for when the user selects an answer
@@ -101,15 +100,10 @@ function MainViewModel() {
   // Updates percentage for progress bar.
   // called by submitUsername, navigatePrevious, and navigateNext
   self.updatePercentage = function() {
-    const id = parseInt(self.currentId());
-    const testLength = parseInt(self.numberOfQuestions())
-    if(testLength === 20){
-      self.percentage((id + 1) * 5 + "%");
-    } else if(testLength === 15){
-      const intRound = Math.ceil((id + 1) * 6.66)
-      self.percentage(intRound + "%");
-    } else
-    self.percentage((id + 1) * 10 + "%");
+    const id = parseInt(self.currentId()) + 1;
+    const questions = parseInt(self.numberOfQuestions());
+    const newPercent = Math.floor((id / questions) * 100);
+    self.percentage(newPercent + "%");
   };
 
   //Grading function that outputs the user rank and score percentage.
@@ -120,7 +114,7 @@ function MainViewModel() {
         score++;
       }
     }
-    const answerPercentage = score * 10;
+    const answerPercentage = (score / self.questionsArray().length) * 100;
     if (answerPercentage <= 60) {
       self.resultsRank("Beginner");
     } else if (answerPercentage > 60 && answerPercentage <= 80) {
